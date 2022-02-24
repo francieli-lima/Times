@@ -3,11 +3,11 @@ import 'package:times/screens/timer_screen.dart';
 import 'components/header.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const TimesApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class TimesApp extends StatelessWidget {
+  const TimesApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -29,8 +29,8 @@ class Times extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [TimesHeader(), TimerScreen()],
+      body: SingleChildScrollView(
+        child: TimerScreen(),
       ),
     );
   }

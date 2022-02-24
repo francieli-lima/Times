@@ -1,7 +1,22 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'flat_button.dart';
 
-class TimesTimer extends StatelessWidget {
+class TimesTimer extends StatefulWidget {
+  Duration _duration;
+
+  TimesTimer(this._duration);
+
+  @override
+  State<TimesTimer> createState() => _TimesTimerState();
+}
+
+class _TimesTimerState extends State<TimesTimer> {
+  Timer? _timer = null;
+  String _timerControl = 'Start';
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,10 +28,10 @@ class TimesTimer extends StatelessWidget {
           SizedBox(
             height: 104.0,
             child: Text(
-              '25:00',
+              '${_printDuration(widget._duration)}',
               style: TextStyle(
                 fontFamily: 'Abril',
-                fontSize: 96.0,
+                fontSize: 86.0,
               ),
             ),
           ),
@@ -39,17 +54,70 @@ class TimesTimer extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(0.0, 32.0, 0.0, 0.0),
+            padding: const EdgeInsets.fromLTRB(0.0, 24.0, 0.0, 0.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                TimesFlatButton('Pause'),
-                TimesFlatButton('Cancel'),
+                TimesFlatButton(
+                  _timerControl,
+                  () {
+                    if(_timer != null) {
+                      this.setState(() {
+                        _timerControl = 'Start';
+                      });
+                      _timer?.cancel() ;
+                      _timer = null;
+                    } else {
+                      _startTimer();
+                    }
+                  },
+                ),
+                TimesFlatButton(
+                  'Cancel',
+                  () {
+                    this.setState(() {
+                      _timerControl = 'Start';
+                    });
+                    _timer?.cancel();
+                  },
+                ),
               ],
             ),
           ),
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  void _startTimer() {
+    this.setState(() {
+      _timerControl = 'Pause';
+    });
+
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      if (widget._duration.inSeconds == 0) {
+        this.setState(() {
+          _timerControl = 'Start';
+          timer.cancel();
+        });
+      } else {
+        this.setState(() {
+          widget._duration = Duration(seconds: widget._duration.inSeconds - 1);
+        });
+      }
+    });
+  }
+
+  String _printDuration(Duration duration) {
+    String twoDigits(int n) => n.toString().padLeft(2, "0");
+    String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
+    String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
+    return "$twoDigitMinutes:$twoDigitSeconds";
   }
 }

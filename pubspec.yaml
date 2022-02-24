@@ -73,6 +73,8 @@ flutter:
     - family: Abril
       fonts:
         - asset: fonts/AbrilFatface-Regular.ttf
+  assets:
+    - assets/images/cup_coffee.png
 
 
 
