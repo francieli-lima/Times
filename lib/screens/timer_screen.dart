@@ -1,21 +1,31 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:times/components/arrow_back.dart';
 import 'package:times/components/divider.dart';
 import 'package:times/components/header.dart';
 import 'package:times/components/timer.dart';
 import 'package:times/components/title_underlined.dart';
 
 class TimerScreen extends StatelessWidget {
+  final Duration _duration;
+
+  TimerScreen(this._duration);
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TimesHeader(),
-        _OngoingTitle(),
-        TimesTimer(Duration(seconds: 25)),
-        TimesDivider(),
-        _Footer(),
-      ],
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            TimesBackArrow(),
+            TimesHeader(),
+            TimesDivider(),
+            _OngoingTitle(),
+            TimesTimer(_duration),
+            TimesDivider(),
+            _Footer(),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -80,7 +90,6 @@ class _Footer extends StatelessWidget {
                   TextSpan(
                     text: 'yourself',
                     style: TextStyle(
-
                       backgroundColor: Color(0xFFCECBCB),
                     ),
                   ),

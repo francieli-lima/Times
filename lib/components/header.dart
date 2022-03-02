@@ -11,48 +11,44 @@ class TimesHeader extends StatelessWidget {
 
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(0.0, 48.0, 0.0, 0.0),
-          child: Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                SizedBox(
-                  height: 40.0,
-                  child: Text.rich(
-                    TextSpan(
-                      children: [
-                        TextSpan(
-                          text: '.${monthFormatter.format(date).toLowerCase()}',
-                        ),
-                        TextSpan(
-                            text: '${date.day}',
-                            style: TextStyle(
-                              color: Colors.red,
-                            )),
-                        TextSpan(
-                          text: '${date.year}',
-                        )
-                      ],
-                      style: TextStyle(fontSize: 36.0, fontFamily: 'Abril'),
-                    ),
+        Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              SizedBox(
+                height: 40.0,
+                child: Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: '.${monthFormatter.format(date).toLowerCase()}',
+                      ),
+                      TextSpan(
+                          text: '${date.day}',
+                          style: TextStyle(
+                            color: Colors.red,
+                          )),
+                      TextSpan(
+                        text: '${date.year}',
+                      )
+                    ],
+                    style: TextStyle(fontSize: 36.0, fontFamily: 'Abril'),
                   ),
                 ),
-                SizedBox(
-                  height: 15.0,
-                  child: Text(
-                    '${weekDayFormatter.format(date).toUpperCase()}',
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                      fontSize: 14.0,
-                    ),
+              ),
+              SizedBox(
+                height: 15.0,
+                child: Text(
+                  '${weekDayFormatter.format(date).toUpperCase()}',
+                  textAlign: TextAlign.right,
+                  style: TextStyle(
+                    fontSize: 14.0,
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
-        TimesDivider(),
       ],
     );
   }

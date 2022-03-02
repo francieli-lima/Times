@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:times/services/notification_service.dart';
+import '../utils.dart';
 import 'flat_button.dart';
 
 class TimesTimer extends StatefulWidget {
@@ -28,7 +29,7 @@ class _TimesTimerState extends State<TimesTimer> {
           SizedBox(
             height: 104.0,
             child: Text(
-              '${_printDuration(widget._duration)}',
+              '${printMinutes(widget._duration)}',
               style: TextStyle(
                 fontFamily: 'Abril',
                 fontSize: 86.0,
@@ -75,10 +76,7 @@ class _TimesTimerState extends State<TimesTimer> {
                 TimesFlatButton(
                   'Cancel',
                   () {
-                    this.setState(() {
-                      _timerControl = 'Start';
-                    });
-                    _timer?.cancel();
+                    Navigator.pop(context);
                   },
                 ),
               ],
@@ -108,16 +106,10 @@ class _TimesTimerState extends State<TimesTimer> {
         });
       } else {
         this.setState(() {
+          // NotificationService().showNotification('Keep up! You\'re doing good!', '${printDuration(widget._duration)}');
           widget._duration = Duration(seconds: widget._duration.inSeconds - 1);
         });
       }
     });
-  }
-
-  String _printDuration(Duration duration) {
-    String twoDigits(int n) => n.toString().padLeft(2, "0");
-    String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
-    String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
-    return "$twoDigitMinutes:$twoDigitSeconds";
   }
 }

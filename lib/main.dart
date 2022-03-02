@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:times/screens/timer_screen.dart';
-import 'components/header.dart';
+import 'package:times/screens/home_screen.dart';
+import 'package:times/services/notification_service.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  NotificationService().init();
+
+  // await NotificationService().requestIOSPermissions(); //
+
   runApp(const TimesApp());
 }
 
@@ -30,7 +35,7 @@ class Times extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: TimerScreen(),
+        child: HomeScreen(),
       ),
     );
   }
