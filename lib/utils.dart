@@ -1,7 +1,19 @@
+import 'package:intl/intl.dart';
+
 String printMinutes(Duration duration) {
   String twoDigitMinutes = _twoDigits(duration.inMinutes.remainder(61));
   String twoDigitSeconds = _twoDigits(duration.inSeconds.remainder(60));
   return "$twoDigitMinutes:$twoDigitSeconds";
+}
+
+String printMinuteExtensive(Duration duration) {
+  String twoDigitMinutes = _twoDigits(duration.inMinutes.remainder(61));
+  return "$twoDigitMinutes minutes";
+}
+
+String printHoursExtensive(Duration duration) {
+  String twoDigitHours = _twoDigits(duration.inHours.remainder(60));
+  return "$twoDigitHours hours";
 }
 
 String printHours(Duration duration) {
@@ -12,6 +24,21 @@ String printHours(Duration duration) {
 
 String printDays(Duration duration) {
   return "${duration.inHours ~/ 8.0}";
+}
+
+String formatDate(DateTime dateTime) {
+  final DateFormat formatter = DateFormat('MMM dd, yy');
+  return formatter.format(dateTime);
+}
+
+String printDayOfWeek(DateTime dateTime) {
+  final DateFormat formatter = DateFormat('EEEE');
+  return formatter.format(dateTime);
+}
+
+String printTime(DateTime dateTime) {
+  final DateFormat formatter = DateFormat('HH:mm');
+  return formatter.format(dateTime);
 }
 
 _twoDigits(int n) => n.toString().padLeft(2, "0");

@@ -8,7 +8,7 @@ class TimesDot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 16.0, 8.0, 16.0),
+      padding: const EdgeInsets.only(right: 8.0),
       child: DecoratedBox(
         child: SizedBox(
           height: 20.0,

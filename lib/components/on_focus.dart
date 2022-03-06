@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:times/components/divider.dart';
+import 'package:times/models/data_type.dart';
 
 import '../utils.dart';
 
 class TimesOnFocus extends StatelessWidget {
   final Duration _duration;
+  final DataType _type;
 
-  const TimesOnFocus(this._duration);
+  const TimesOnFocus(this._duration, this._type);
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +17,10 @@ class TimesOnFocus extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: 105,
+            height: 115,
             child: Text.rich(
               TextSpan(
-                text: 'Hours on focus\nthis week',
+                text: 'Hours on focus\nthis ${_type.displayTitle}',
                 style: TextStyle(
                   fontSize: 48.0,
                 ),
