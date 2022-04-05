@@ -16,7 +16,7 @@ class TimesHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               SizedBox(
-                height: 40.0,
+                height: 47.0,
                 child: Text.rich(
                   TextSpan(
                     children: [

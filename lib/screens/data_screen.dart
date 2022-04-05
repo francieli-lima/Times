@@ -5,11 +5,13 @@ import 'package:times/components/dots_item.dart';
 import 'package:times/components/on_focus.dart';
 import 'package:times/components/tracker_list.dart';
 import 'package:times/models/data_type.dart';
+import 'package:times/models/track.dart';
 
 class DataScreen extends StatelessWidget {
   final DataType _type;
+  final List<Track> _tracks;
 
-  const DataScreen(this._type);
+  const DataScreen(this._type, this._tracks);
 
   @override
   Widget build(BuildContext context) {

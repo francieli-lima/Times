@@ -5,6 +5,7 @@ import 'package:times/components/dots_item.dart';
 import 'package:times/components/header.dart';
 import 'package:times/components/tracker_list.dart';
 import 'package:times/models/data_type.dart';
+import 'package:times/models/track.dart';
 import 'package:times/screens/timer_entry.dart';
 
 import 'all_screen.dart';
@@ -83,9 +84,9 @@ class _HomeScreenState extends State<HomeScreen>
             controller: _tabController,
             children: [
               TimerEntryScreen(),
-              DataScreen(DataType.Week),
-              DataScreen(DataType.Month),
-              DataScreen(DataType.Year),
+              DataScreen(DataType.Week, []),
+              DataScreen(DataType.Month, []),
+              DataScreen(DataType.Year, []),
               AllScreen(),
             ],
           ),
